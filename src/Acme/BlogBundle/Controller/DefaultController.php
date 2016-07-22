@@ -11,8 +11,10 @@ class DefaultController extends Controller
         return $this->render('AcmeBlogBundle:Default:index.html.twig');
     }
 
-    public function fooAction()
+    public function fooAction($username)
     {
-        return $this->render('AcmeBlogBundle:Default:foo.html.twig');
+        return $this->render('AcmeBlogBundle:Default:foo.html.twig', [
+            'username' => $username,
+        ]);
     }
 }

@@ -3,5 +3,5 @@ acme_blog_homepage:
     defaults: { _controller: AcmeBlogBundle:Default:index }
     
 acme_blog_foobar:
-    path: foo/
+    path: foo/{username}
     defaults: { _controller: AcmeBlogBundle:Default:foo }

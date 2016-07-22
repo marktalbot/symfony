@@ -1,1 +1,7 @@
-Hello this is foobar
+{% extends "AcmeBlogBundle:Default:master.html.twig" %}
+
+{% block content %}
+	<div class="container">
+		Hello this is {{ username }}
+	</div>
+{% endblock %}	
