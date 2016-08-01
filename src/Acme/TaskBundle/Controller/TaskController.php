@@ -16,7 +16,6 @@ class TaskController extends Controller
 
 		// Get existing tasks
 		$em = $this->getDoctrine()->getManager();
-
 		// @TODO: Use respository instead of Task entity
 		$tasks = $em->getRepository('AcmeTaskBundle:Task')->findAll();
 
@@ -40,10 +39,9 @@ class TaskController extends Controller
 			$em->persist($task);
 			$em->flush();
 
-			$this->get('session')->getFlashBag()->add('success', 'The task has been created');
+			$this->get('session')->getFlashBag()->add('success', "The task '{$task->getTitle()}' has been created");
 
 			return $this->redirect($this->generateUrl('acme_tasks'));
-
 		}
 
 		$this->get('session')->getFlashBag()->add('error', 'Error: something whent wrong');
@@ -53,9 +51,15 @@ class TaskController extends Controller
 
 	public function destroyAction($id)
 	{
-		echo '<pre>';
-		print_r('post here to delete a task from the DB');
-		echo '</pre>';exit;		
+		$em   = $this->getDoctrine()->getManager();
+		$task = $em->getRepository('AcmeTaskBundle:Task')->find($id);
+
+		$em->remove($task);
+		$em->flush();
+		
+		$this->get('session')->getFlashBag()->add('success', "The task '{$task->getTitle()}' has been deleted");
+
+		return $this->redirect($this->generateUrl('acme_tasks'));
 	}
 
 	/**

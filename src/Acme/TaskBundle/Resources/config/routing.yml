@@ -8,5 +8,5 @@ acme_store_task:
     methods: [POST]
 
 acme_delete_task:
-    path: /tasks/delete
+    path: /tasks/delete/{id}
     defaults: { _controller: AcmeTaskBundle:Task:destroy }

@@ -21,12 +21,18 @@
 										<code>{{ task.id }}</code> {{ task.title }}
 									</td>
 									<td class="text-right">
-										<button class="btn btn-success">Update</button>
-										<button class="btn btn-danger">Delete</button>	
+										{# <button class="btn btn-success">Update</button> #}
+										<form action="{{ path('acme_delete_task', {'id': task.id}) }}" method="post">
+											<input type="hidden" name="_csrf_token" value="{{ csrf_token('intention') }}">
+											<button class="btn btn-danger">Delete</button>	
+										</form>
 									</td>
 								</tr>
 							{% endfor %}
 						</table>
+						{% if tasks is empty %}
+							<p>No tasks found</p>
+						{% endif %}
 					</div>
 				</div>
 			</div>
