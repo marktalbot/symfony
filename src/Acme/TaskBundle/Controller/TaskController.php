@@ -10,7 +10,8 @@ use Acme\TaskBundle\Form\TaskType;
 class TaskController extends Controller
 {
 	public function indexAction()
-	{
+	{		
+		// Create form
 		$task = new Task;
 
 		$form = $this->createForm(new TaskType, $task, [
@@ -23,8 +24,14 @@ class TaskController extends Controller
 			'attr'  => ['class' => 'btn btn-default'],
 		]);
 
+		// Get existing tasks
+		$em = $this->getDoctrine()->getManager();
+
+		$tasks = $em->getRepository('AcmeTaskBundle:Task')->findAll();
+
 		return $this->render('AcmeTaskBundle:Tasks:index.html.twig', [
-			'form' => $form->createView(),
+			'form'  => $form->createView(),
+			'tasks' => $tasks,
 		]);
 	}
 

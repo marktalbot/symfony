@@ -13,7 +13,7 @@ class TaskType extends AbstractType
 	{
 		$builder->add('title', null, [
 			'label' => 'Task',
-			'attr' => ['class' => 'form-control'],
+			'attr' => ['class' => 'form-control', 'style' => 'margin-bottom: 20px'],
 		]);
 	}
 

@@ -15,24 +15,17 @@
 					<div class="panel-heading">Current Tasks</div>
 					<div class="panel-body">
 						<table class="table">
-							<tr>
-								<td>
-									(task name #1)
-								</td>
-								<td class="text-right">
-									<button class="btn btn-success">Update</button>
-									<button class="btn btn-danger">Delete</button>	
-								</td>
-							</tr>
-							<tr>
-								<td>
-									(task name #2)
-								</td>
-								<td class="text-right">
-									<button class="btn btn-success">Update</button>
-									<button class="btn btn-danger">Delete</button>	
-								</td>
-							</tr>
+							{% for task in tasks %}
+								<tr>
+									<td>
+										<code>{{ task.id }}</code> {{ task.title }}
+									</td>
+									<td class="text-right">
+										<button class="btn btn-success">Update</button>
+										<button class="btn btn-danger">Delete</button>	
+									</td>
+								</tr>
+							{% endfor %}
 						</table>
 					</div>
 				</div>
