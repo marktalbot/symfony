@@ -14,9 +14,8 @@ class TaskController extends Controller
 		$task = new Task;
 		$form = $this->createNewTaskForm($task);
 
-		// Get existing tasks
-		$em = $this->getDoctrine()->getManager();
 		// @TODO: Use respository instead of Task entity
+		$em    = $this->getDoctrine()->getManager();
 		$tasks = $em->getRepository('AcmeTaskBundle:Task')->findAll();
 
 		return $this->render('AcmeTaskBundle:Tasks:index.html.twig', [
@@ -64,7 +63,6 @@ class TaskController extends Controller
 
 	/**
 	 * @param Acme\TaskBundle\Entity\Task $task 
-	 * 
 	 * @return Acme\TaskBundle\Form\TaskType $form
 	 */
 	public function createNewTaskForm($task)
