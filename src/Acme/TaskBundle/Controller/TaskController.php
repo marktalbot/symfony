@@ -11,22 +11,13 @@ class TaskController extends Controller
 {
 	public function indexAction()
 	{		
-		// Create form
 		$task = new Task;
-
-		$form = $this->createForm(new TaskType, $task, [
-			'action' => $this->generateUrl('acme_store_task'),
-			'method' => 'POST',
-		]);
-
-		$form->add('submit', 'submit', [
-			'label' => 'Add Task',
-			'attr'  => ['class' => 'btn btn-default'],
-		]);
+		$form = $this->createNewTaskForm($task);
 
 		// Get existing tasks
 		$em = $this->getDoctrine()->getManager();
 
+		// @TODO: Use respository instead of Task entity
 		$tasks = $em->getRepository('AcmeTaskBundle:Task')->findAll();
 
 		return $this->render('AcmeTaskBundle:Tasks:index.html.twig', [
@@ -38,16 +29,7 @@ class TaskController extends Controller
 	public function storeAction(Request $request)
 	{
 		$task = new Task;
-
-		$form = $this->createForm(new TaskType, $task, [
-			'action' => $this->generateUrl('acme_store_task'),
-			'method' => 'POST',
-		]);
-
-		$form->add('submit', 'submit', [
-			'label' => 'Add Task',
-			'attr'  => ['class' => 'btn btn-default'],
-		]);
+		$form = $this->createNewTaskForm($task);
 
 		$form->handleRequest($request);
 		
@@ -74,5 +56,25 @@ class TaskController extends Controller
 		echo '<pre>';
 		print_r('post here to delete a task from the DB');
 		echo '</pre>';exit;		
+	}
+
+	/**
+	 * @param Acme\TaskBundle\Entity\Task $task 
+	 * 
+	 * @return Acme\TaskBundle\Form\TaskType $form
+	 */
+	public function createNewTaskForm($task)
+	{
+		$form = $this->createForm(new TaskType, $task, [
+			'action' => $this->generateUrl('acme_store_task'),
+			'method' => 'POST',
+		]);
+
+		$form->add('submit', 'submit', [
+			'label' => 'Add Task',
+			'attr'  => ['class' => 'btn btn-default'],
+		]);
+
+		return $form;
 	}
 }
