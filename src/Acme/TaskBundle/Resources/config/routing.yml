@@ -1,11 +1,12 @@
 acme_tasks:
     path: /tasks
-    defaults: { _controller: AcmeTaskBundle:Default:index }
+    defaults: { _controller: AcmeTaskBundle:Task:index }
 
 acme_store_task:
     path: /tasks/post
-    defaults: { _controller: AcmeTaskBundle:Default:store }
+    defaults: { _controller: AcmeTaskBundle:Task:store }
+    methods: [POST]
 
 acme_delete_task:
     path: /tasks/delete
-    defaults: { _controller: AcmeTaskBundle:Default:destroy }
+    defaults: { _controller: AcmeTaskBundle:Task:destroy }

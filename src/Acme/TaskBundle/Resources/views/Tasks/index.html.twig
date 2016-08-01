@@ -8,13 +8,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">New Task</div>
 					<div class="panel-body">
-						<div class="form-group">
-							<label for="">Task</label>
-							<input type="text" class="form-control">
-						</div>
-						<div class="form-group">
-							<button class="btn btn-default">Add Task</button>
-						</div>
+						{{ form(form) }}
 					</div>
 				</div>
 				<div class="panel panel-default">
@@ -26,6 +20,7 @@
 									(task name #1)
 								</td>
 								<td class="text-right">
+									<button class="btn btn-success">Update</button>
 									<button class="btn btn-danger">Delete</button>	
 								</td>
 							</tr>
@@ -34,6 +29,7 @@
 									(task name #2)
 								</td>
 								<td class="text-right">
+									<button class="btn btn-success">Update</button>
 									<button class="btn btn-danger">Delete</button>	
 								</td>
 							</tr>
